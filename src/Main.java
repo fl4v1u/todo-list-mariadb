@@ -9,7 +9,7 @@ public class Main {
         frame.setSize(250, 220);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-
+// test commit und push mit bug fix
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
