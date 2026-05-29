@@ -6,6 +6,11 @@ import java.awt.event.*;
 import java.sql.*;
 
 public class Logindaten {
+    private static final String DB_URL = "jdbc:mariadb://localhost:3307/todo";
+    private static final String DB_DRIVER = "org.mariadb.jdbc.Driver";
+    private static final String password ="1234";
+    private static final String user ="root";
+
     private String emailregistrieren;
     private String passwordregristrieren;
     private String emailanmelden;
@@ -14,13 +19,15 @@ public class Logindaten {
     private Connection conn1;
     private String DBuserDaten;
     private String DBuserPassword;
-    static private String password ="1234";
-    static private String user ="root";
 
     public void DBverbindung(){
         try {
-             conn1 = DriverManager.getConnection("jdbc:mariadb://localhost:3307/todo", user, password);
+            Class.forName(DB_DRIVER);
+            conn1 = DriverManager.getConnection(DB_URL, user, password);
             System.out.println("Verbunden");
+        } catch (ClassNotFoundException e) {
+            System.err.println("MariaDB JDBC-Treiber nicht gefunden. Pruefe, ob mariadb-java-client im Classpath ist.");
+            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
